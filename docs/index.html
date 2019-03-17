@@ -7,9 +7,11 @@
   <title>Guestbook - a serverless web application</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
 
 <body>
+
   <section class="section">
     <div class="container">
       <h1 class="title is-1">
@@ -20,15 +22,20 @@
       </p>
 
       <div class="columns">
-        <div class="column">
+        <div class="column" >
           <h3 class="title is-3">
-            Resultado de la votación:
+            Resultado de la votación: <br>
+	<!-- <strong>Deportes: <div class="resultsDeportes"></div></strong>
+        <strong>Shooters: <div class="resultsShooter"></div></strong>
+	<strong>Aventuras: <div class="resultsAventuras"></div></strong> -->
+	<canvas id="pie-chart" width="800" height="450"></canvas>
           </h3>
           <div id="entries"></div>
         </div>
         <div class="column">
           <h3 class="title is-3">
-            Vota!
+            Vota! Si se vuelve a votar con el mismo mail, se modificará el voto.
+		
           </h3>
           <form id="addEntry">
             <div class="field">
@@ -43,14 +50,14 @@
                 <input class="input" type="text" placeholder="email" id="email">
               </div>
             </div>
-            <div class="field">
-              <label class="label">Voto</label>
-              <div class="control">
-                <textarea class="textarea" placeholder="Decisión" id="comment"></textarea>
-              </div>
+            <div id="comment" action="">
+              <label class="label">Elegir</label>
+              <input type="radio" name="comment" value="Deportes"> Deportes<br>
+              <input type="radio" name="comment" value="Shooter"> Shooter<br>
+              <input type="radio" name="comment" value="Aventuras"> Aventuras
             </div>
-            <div class="control">
-              <button class="button is-primary">Envía tu preferencia</button>
+            <div class="control" >
+              <button class="button is-primary" >Envía tu preferencia</button>
             </div>
           </form>
         </div>
@@ -58,7 +65,16 @@
     </div>
   </section>
 
-  <script id="entries-template" type="text/x-handlebars-template">
+
+
+<!--<div class="media-left">
+Deportes: <div class="resultsDeportes"></div>
+Shooter: <div class="resultsShooter"></div>
+Aventuras: <div class="resultsAventuras"></div>
+</div> -->
+
+
+ <!-- <script id="entries-template" type="text/x-handlebars-template">
     {{#each entries}}
     <div class="box">
       <article class="media">
@@ -68,17 +84,17 @@
           </figure>
         </div>
         <div class="media-content">
-          <div class="content">
+          <div class="content"> 
             <p>
-              <strong>{{name}}</strong> <small>{{email}}</small>
+              <strong>{{name}}</strong>
               <br> {{comment}}
             </p>
           </div>
         </div>
       </article>
-    </div>
+    </div> 
     {{/each}}
-  </script>
+  </script> -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
